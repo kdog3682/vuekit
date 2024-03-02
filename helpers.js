@@ -1,3 +1,4 @@
+// ./setup.js
 export {
     assignFallbackValues,
     getDataAndPropKeys,
@@ -7,7 +8,7 @@ export {
 import * as variables from "../../2023/variables.js"
 
 
-function assignFallbackValues(keys, external = {}, ignore = []) {
+function assignFallbackValues(keys, ignore = []) {
     const data = keys.reduce((acc, key) => {
         if (ignore.includes(key) || /^[$_]/.test(key) || key.length < 3) {
             return acc
@@ -15,14 +16,8 @@ function assignFallbackValues(keys, external = {}, ignore = []) {
         if (acc.hasOwnProperty(key)) {
             return acc
         }
-        if (external.hasOwnProperty(key)) {
-            acc[key] = external[key]
-            return acc
-        }
         const value = variables.vueImplicitDataKeyRef.hasOwnProperty(key)
             ? variables.vueImplicitDataKeyRef[key]
-            : key.length > 6 && key in external
-            ? external[key]
             : /(?:type)$/i.test(key)
             ? ""
             : /(?:dict|json|spec|data)$/i.test(key)

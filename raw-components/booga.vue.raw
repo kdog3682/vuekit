@@ -1,0 +1,27 @@
+data:
+    asdf: howdy
+        
+switch asdf
+    color: this.color
+        
+    case howdy 
+        p asdfasdf
+            click() {
+                this.asdf = 'smarty'
+                this.color = 'red'
+            }
+
+    case smarty 
+        p hi from smarty -> become party 
+            click() {
+                this.asdf = 'party'
+            }
+
+    case party 
+        p hi from party
+            click() {
+                this.asdf = 'abcde'
+            }
+
+    default 
+        p hi from default
