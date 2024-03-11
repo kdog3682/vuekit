@@ -25,13 +25,6 @@ const stringifyOptions = {
     }
 }
 class ComponentState {
-    jsonWrap(node, children) {
-        return {
-            ...node.state,
-            children
-        }
-    }
-
     wrap2(node, children) {
         if (node.computedLopStyle) {
             const func = buildFunction({
@@ -120,7 +113,7 @@ class ComponentState {
         this.getImplicitDataKeys(text)
 
         if (parent.uid == 0) {
-            keythis.handleRootFunction(funcData)
+            this.handleRootFunction(funcData)
         } else {
             this.handleInlineFunction(parent, funcData)
         }

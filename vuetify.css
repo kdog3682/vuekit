@@ -32,13 +32,26 @@ html {
     padding: 0.5em;
     background: #3f3f3f;
     color: #dcdcdc;
-
-    margin-bottom: 20pt;
-    margin-top: 20pt;
 }
-
 
 .flex {
     display: flex;
     background-color: #fef9c3 /* yellow-100 */;
+}
+
+/* but it is patchwork to do it like this */
+/* i am not convinced that it is a good idea */
+/* maybe target every descendant  */
+
+
+.v-highlight-js {
+    margin-bottom: 20pt;
+    margin-top: 20pt;
+}
+/****
+    this will undo the above marginations when the parent is flex
+****/
+.flex > .v-highlight-js {
+    margin-bottom: 0pt;
+    margin-top: 0pt;
 }
