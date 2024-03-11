@@ -1,0 +1,31 @@
+flex
+    let a = 123
+    function foo() {
+        console.log("hi")
+    }
+
+    hi
+
+
+const a = 123
+const b = 12
+
+function foo() {
+
+}
+
+bye
+
+the answer is $\frac{2}{3}$ but sometimes it is $\frac{2}{333}$.
+
+the answer is $\frac{2}{3}$ but sometimes it is $\frac{2}{333}$.
+
+the answer is $\frac{2}{3}$ but sometimes it is $\frac{2}{333111}$.
+
+// not combining properly
+
+const a = 123
+
+
+how are `eatting the fish` you today?
+

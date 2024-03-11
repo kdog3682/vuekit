@@ -4,10 +4,11 @@ inoremap <buffer> <expr> = SmartEqual2()
 set nosmartindent
 set noautoindent
 inoremap <buffer> <expr> <cr> VueEnter()
-    
 inoremap <buffer> <expr> [ VueBrace()
 date: datetime
-last: true
+compile: true
+allKeys: true
+// last: true
 ---
 
 
@@ -51,7 +52,7 @@ button hi from {student.name}
 name: v-list
 
 ul
-    li for = item in value :key = item
+    li for = item, index in value :key = item
         slot bind = item :index = index name = default
             v-pre {item}
 

@@ -1,0 +1,18 @@
+
+
+name: app-dialogue
+v-list :value = items
+    .dialogue-item
+        .dialogue-speaker {slot.speaker}
+        .dialogue-content {slot.content}
+
+mounted() {
+    this.items = codingDialogue(this.value)
+}
+
+
+function codingDialogue(s) {
+    return
+}
+
+

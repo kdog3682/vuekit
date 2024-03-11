@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body,
+html {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.md-sentence {
+    background-color: #fef9c3 /* yellow-100 */;
+}
+.md-sentence > *:not(:first-child) {
+    color: blue;
+    padding-left: 4pt;
+}
+
+.hljs {
+    display: block;
+    overflow-x: scroll;
+    padding: 0.5em;
+    background: #fdf6e3;
+    color: #657b83;
+    -webkit-text-size-adjust: none;
+}
+
+.v-highlight-js {
+    display: block;
+    padding: 0.5em;
+    background: #3f3f3f;
+    color: #dcdcdc;
+
+    margin-bottom: 20pt;
+    margin-top: 20pt;
+}
+
+
+.flex {
+    display: flex;
+    background-color: #fef9c3 /* yellow-100 */;
+}

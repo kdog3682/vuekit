@@ -1,6 +1,7 @@
 // ./setup.js
 export {
     assignFallbackValues,
+    getSkeleton,
     getDataAndPropKeys,
     // getTypedThisBindings,
 }
@@ -9,6 +10,9 @@ import * as variables from "../../2023/variables.js"
 
 
 function assignFallbackValues(keys, ignore = []) {
+    const known = {
+        input: '',
+    }
     const data = keys.reduce((acc, key) => {
         if (ignore.includes(key) || /^[$_]/.test(key) || key.length < 3) {
             return acc
@@ -211,4 +215,133 @@ function maybeGetAttributes(state, prev) {
     return prev
 }
 
+function vueRenderer(state, value) {
+    const h = state.$createElement
+        // console.log(JSON.stringify(value))
+    const staticClass = vueName(state) 
+    return runner(value)
 
+    function runner(x) {
+        if (isArray(x)) {
+            return getChild({ children: x, staticClass })
+        }
+        return getSlot(x, getChild(x))
+    }
+
+    function getChild(x, Child) {
+        const { tag, component, children, value } = x
+        const options = getOptions(x, !!Child)
+
+        const parent = tag
+            ? tag
+            : component
+            ? window[component]
+            : "div"
+
+        const payload = children
+            ? children.map(runner).filter(exists)
+            : Child
+            ? [Child]
+            : isDefined(value)
+            ? value
+            : null
+
+        return h(parent, options, payload)
+    }
+
+    function getSlot(x, Child) {
+        const slots = x.slot
+            ? [x.slot]
+            : x.slots
+            ? x.slots
+            : []
+
+        let Current = Child
+        for (let slot of slots) {
+            Current = getChild(slot, Current)
+        }
+        return Current
+    }
+
+    function getOptions(x, isSlot) {
+        const staticClass = x.staticClass
+            ? x.staticClass
+            : x.className
+            ? x.className
+            : x.class
+            ? x.class
+            : null
+
+        const props = x.props
+            ? x.props
+            : x.component && isDefined(x.value)
+            ? { value: x.value }
+            : null
+
+        const directives = x.directives
+            ? x.directives
+            : x.directive
+            ? [x.directive]
+            : null
+
+        const attrs = x.attrs
+        const on = x.on
+        const style = x.style
+        const domProps = x.html
+            ? { innerHTML: x.html }
+            : null
+
+        return {
+            domProps,
+            on,
+            staticClass,
+            attrs,
+            style,
+            props,
+            directives
+        }
+    }
+}
+
+
+function smaller(s, n) {
+    const text = s.slice(0, n)
+    const suffix = n < s.length ? ' ...' : ''
+    return text + suffix
+}
+function getSkeleton(target, mode) {
+    const ignore = ['asdf']
+    const get = (x) => {
+        switch(target) {
+            case 'body': return document.body
+            default: return document.body
+        }
+    }
+
+    const html = get(target)
+    const getter = (x) => {
+        const tag = x.tagName.toLowerCase()
+        const className = x.className
+        const text = smaller(x.textContent, 10)
+        return {
+            tag,
+            className,
+            value: text,
+        }
+    }
+    const runner = (x) => {
+        if (ignore.includes(x.className)) {
+            return 
+        }
+        if (x.children.length) {
+            const kids = Array.from(x.children).map(runner)
+            return {
+                children: kids.filter(isDefined),
+                ...getter(x)
+            }
+        } else {
+            return getter(x)
+        }
+    }
+    return runner(html)
+}
