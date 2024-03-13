@@ -1,2 +1,102 @@
+button, button:hover, button::active,
+input, input:hover, input::active {
+    outline: none;
+}
+body {
+    padding: 20pt;
+    font-family: 'sans serif';
+    font-weight: normal;
+    font-size: 16pt;
+}
 
 /* hi */
+
+
+.container {
+    background-color: #fef9c3 /* yellow-100 */;
+    display: grid;
+    row-gap: 3pt;
+    column-gap: 10pt;
+    grid-template-columns: fit-content(500px) 200px;
+}
+/* there are numerous ways to achieve the same effects */
+
+
+.flex {
+    display: flex;
+}
+
+form {
+    font-size: 12pt;
+    padding: 10pt;
+    width: fit-content;
+    border-radius: 10pt;
+}
+
+label {
+    font-weight: bold; 
+    display: flex;
+    align-items: center;
+}
+
+input:focus {
+    transition: border 1s
+    outline-style: solid;
+    outline-width: 2pt;
+    outline-color: black;
+}
+input::placeholder {
+    color: #38bdf8 /* sky-400 */;
+    padding-left: 5pt;
+    opacity: 0.2;
+    font-style: italic;
+    
+}
+
+input {
+    padding: 5pt;
+    border-radius: 10pt;
+}
+
+button {
+    border-radius: 5pt;
+    padding: 5pt;
+    background-color: #93c5fd /* blue-300 */;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button:hover {
+    color: white;
+    border-color: white;
+}
+
+
+.box {
+    position: relative;
+}
+
+
+.box::after {
+    content: attr(text);
+    color: white;
+    /* padding: 20pt; */
+    /* background-color: #fef9c3 /* yellow-100 */; */
+    font-size: 20pt;
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.flex {
+    width: fit-content;
+    align-items: center;
+}
+
+
+
+.shifted {
+    margin-right: auto
+}

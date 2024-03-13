@@ -1,12 +1,13 @@
 <!DOCTYPE html><html lang="en">
     <link rel="stylesheet" href="./simple-reset.css"/>
     <link rel="stylesheet" href="./simple.css"/>
+    <link rel="stylesheet" href="./debug.css"/>
 
     <script type="module">
+
+        import input from "./vuekit/simple.vue.js?raw"
         import {simpleSetup} from "./simpleSetup.js"
-        simpleSetup(`
-            
-        `)
+        simpleSetup(input)
     </script>
 
     <body>
