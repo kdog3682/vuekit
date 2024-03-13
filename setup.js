@@ -7,6 +7,7 @@ import * as logger from "/home/kdog3682/2024-javascript/js-toolkit/logger.js"
 
 import * as baseComponents from "./base-components.js"
 import * as advancedComponents from "./advanced-components.js"
+import * as methods from "./methods.js"
 
 function createApp(component, value) {
     const defaultApp = {
@@ -19,6 +20,10 @@ function createApp(component, value) {
     }
     const app = new Vue(defaultApp)
     return app
+}
+
+function registerMethod([k, v]) {
+    Vue.prototype[k] = v
 }
 
 function setup(options) {
@@ -34,6 +39,7 @@ function setup(options) {
     )
 
     components.forEach(registerComponent)
+    entries(methods).forEach(registerMethod)
 
     const errorHandler = (e, vm, loc) => {
         logger.error(e, vm, loc)

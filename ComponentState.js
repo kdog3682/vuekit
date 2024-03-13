@@ -191,6 +191,8 @@ class ComponentState {
         // throw this
         const key = this.options.mode
         switch (key) {
+            case "html":
+                return this.component.template
             case 'component':
                 return this.component
             case "str":

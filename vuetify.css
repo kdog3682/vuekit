@@ -1,15 +1,3 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-body,
-html {
-    height: 100%;
-    width: 100%;
-    position: relative;
-}
-
 .md-sentence {
     background-color: #fef9c3 /* yellow-100 */;
 }
@@ -48,10 +36,13 @@ html {
     margin-bottom: 20pt;
     margin-top: 20pt;
 }
+
 /****
     this will undo the above marginations when the parent is flex
 ****/
+
 .flex > .v-highlight-js {
     margin-bottom: 0pt;
     margin-top: 0pt;
 }
+
