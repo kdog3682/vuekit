@@ -5,26 +5,10 @@ import {vueflow} from "/home/kdog3682/2024-javascript/vuekit/vueflow.js"
 import {createApp} from "/home/kdog3682/2024-javascript/vuekit/createApp.js"
 import {VHtml} from "./base-components.js"
 
-const fallback = `
 
-        p hi
-        container asdf = 1
-            asdfasdf = 223
-            type = columns
-            gap = 5
-            left = 100
-            size = 2
-
-            p hiaaaaaaaaaaaa
-            p hi
-            p hi
-                color: red
-            p hi
-                color: blue
-`
-
-function simpleSetup(s = fallback) {
-    const value = vueflow(chosen(s, 'last'), 'html')
-    console.log(value)
+function simpleSetup(s) {
+    const input = chosen(s, 'last')
+    const value = vueflow(input, 'html')
+    // console.log(value)
     return createApp(VHtml, value)
 }

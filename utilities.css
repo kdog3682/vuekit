@@ -1,0 +1,27 @@
+.align-items {
+  display: flex;
+  justify-content: space-between;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.space-evenly {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.flex {
+    display: flex;
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+

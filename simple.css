@@ -1,16 +1,20 @@
-button, button:hover, button::active,
-input, input:hover, input::active {
+button,
+button:hover,
+button::active,
+input,
+input:hover,
+input::active {
     outline: none;
 }
 body {
     padding: 20pt;
-    font-family: 'sans serif';
+    outline: 1px solid red;
+    font-family: "sans serif";
     font-weight: normal;
     font-size: 16pt;
 }
 
 /* hi */
-
 
 .container {
     background-color: #fef9c3 /* yellow-100 */;
@@ -21,11 +25,6 @@ body {
 }
 /* there are numerous ways to achieve the same effects */
 
-
-.flex {
-    display: flex;
-}
-
 form {
     font-size: 12pt;
     padding: 10pt;
@@ -34,13 +33,13 @@ form {
 }
 
 label {
-    font-weight: bold; 
+    font-weight: bold;
     display: flex;
     align-items: center;
 }
 
 input:focus {
-    transition: border 1s
+    transition: border 1s;
     outline-style: solid;
     outline-width: 2pt;
     outline-color: black;
@@ -50,7 +49,6 @@ input::placeholder {
     padding-left: 5pt;
     opacity: 0.2;
     font-style: italic;
-    
 }
 
 input {
@@ -72,31 +70,116 @@ button:hover {
     border-color: white;
 }
 
-
 .box {
     position: relative;
 }
 
-
 .box::after {
     content: attr(text);
     color: white;
-    /* padding: 20pt; */
-    /* background-color: #fef9c3 /* yellow-100 */; */
     font-size: 20pt;
-    position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    /** abs-center **/ position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
 }
 
-.flex {
-    width: fit-content;
+.lorem {
+    display: flex;
     align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 5pt;
+    overflow: hidden;
+}
+svg {
+    background-color: #fef9c3 /* yellow-100 */;
+    display: block;
+}
+p {
+    background-color: #fef9c3 /* yellow-100 */;
 }
 
 
 
-.shifted {
-    margin-right: auto
+th {
+    /* padding: 10pt; */
+    padding-left: 10pt;
+    padding-right: 10pt;
+    /* background-color: #fef9c3 /* yellow-100 */; */
+    /* outline: 1px solid red; */
+    /* font-weight: bold; */
 }
+tfoot > tr > th {
+    outline: 1px solid blue;
+}
+td {
+    text-align: center;
+}
+table {
+    border-collapse: collapse;
+    caption-side: bottom
+}
+
+.tr-underline {
+    
+}
+
+tbody.canada > tr:not(:last-child) {
+    border-bottom-color: #8b8b8b /* black-500 */;
+    border-bottom-width: 0.5px;
+    border-bottom-style: solid;
+    padding-top: 50pt;
+}
+
+tbody {
+    background-color: #fef9c3 /* yellow-100 */;
+    font-size: 16pt;
+    font-family: Times;
+    border-left-color: #e8e8e8 /* black-900 */;
+    border-left-width: 10px;
+    border-left-style: solid;
+
+    border-right-color: #e8e8e8 /* black-900 */;
+    border-right-width: 10px;
+    border-right-style: solid;
+}
+
+tbody > tr:hover {
+    background-color: #fde047 /* yellow-300 */;
+}
+caption {
+    color: red;
+    text-align: center;
+    background-color: #fef9c3 /* yellow-100 */;
+}
+
+caption.abc {
+    color: blue;
+}
+
+caption:nth-child(1) {
+    color: green;
+}
+
+caption:nth-child(2) {
+    color: orange;
+}
+
+.slide-in {
+  width: 200px; /* Set your desired width */
+  height: 100px; /* Set your desired height */
+  background-color: #ccc; /* Set your desired background color */
+  position: relative;
+  animation: slideFromLeft 1s ease forwards;
+  opacity: 0;
+}
+
+@keyframes slideFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
