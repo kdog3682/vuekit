@@ -6,9 +6,16 @@ import {createApp} from "/home/kdog3682/2024-javascript/vuekit/createApp.js"
 import {VHtml} from "./base-components.js"
 
 
+
+
 function simpleSetup(s) {
-    const input = chosen(s, 'last')
-    const value = vueflow(input, 'html')
-    // console.log(value)
-    return createApp(VHtml, value)
+    const input = chosen(s, 'chosen')
+    try {
+        const value = vueflow(input, 'html') 
+        console.log(value)
+        return createApp(VHtml, value)
+    } catch(e) {
+        console.error(e)
+        console.log(input)
+    }
 }

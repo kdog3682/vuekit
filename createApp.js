@@ -13,5 +13,8 @@ function createApp(component, value) {
         }
     }
     const app = new Vue(defaultApp)
+    // window.app = app
+    window.vue = app
+    window.app = app.$children[0]
     return app
 }

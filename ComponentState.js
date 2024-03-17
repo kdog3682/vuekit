@@ -59,6 +59,12 @@ class ComponentState {
             }
         }
     }
+    wrap2(state) {
+        const fn = xmlString
+        const runner = makeStateRunner(fn)
+        return runner(state)
+        
+    }
     wrap(node, children) {
         if (node.computedLopStyle) {
             const func = buildFunction({
@@ -109,21 +115,27 @@ class ComponentState {
     }
     handleFunction(node) {
         const parent = node.parent
-        const text = node.computedText
-        const funcData = parseFunction(text, eval)
+        const [text, opt] = mget3(node.computedText, /^(computed|watch) +/)
+        // console.log({text, opt})
+        const funcData = parseFunction(text, Function)
+        // console.log("funcData", funcData)
         this.getImplicitDataKeys(text)
 
         if (parent.uid == 0) {
-            this.handleRootFunction(funcData)
+            this.handleRootFunction(funcData, opt)
         } else {
             this.handleInlineFunction(parent, funcData)
         }
     }
-    handleRootFunction({ name, fn }) {
-        if (has(variables.vueNativeFunctionKeys, name)) {
+    handleRootFunction({ name, fn }, opt) {
+        if (opt) {
+            this.assign(opt, name, fn)
+        }
+        else if (has(variables.vueNativeFunctionKeys, name)) {
             this.assign(name, fn)
         } else if (/^(watch|computed)/.test(name)) {
             const dest = match(name, /^(watch|computed)/)
+            // name = name.replace(/^(watch|computed) /, '')
             this.assign(dest, name, fn)
         } else {
             this.assign("methods", name, fn)
@@ -189,7 +201,6 @@ class ComponentState {
         return this.component
     }
     toString() {
-        // throw this
         const key = this.options.mode
         switch (key) {
             case "html":
@@ -211,6 +222,10 @@ class ComponentState {
         const implied = []
 
         const visitor = (node) => {
+            if (node.dataKeys) {
+                ignored.push(...node.dataKeys)
+                this.dataKeys.push(...node.dataKeys)
+            }
             if (node.ignored) {
                 ignored.push(...node.ignored)
             }
@@ -236,6 +251,7 @@ class ComponentState {
 
         const props0 = flat(this.component.props)
         const implicits = this.gatherImplicits(node)
+        // console.log(this.dataKeys)
         const undetermined = this.propKeys.concat(implicits)
         // numerics represent mutations ...
         // u can not mutate props ...
@@ -247,6 +263,7 @@ class ComponentState {
             }
         })
         const data = helpers.assignFallbackValues(this.dataKeys)
+        // console.log(this.dataKeys, data)
         Object.assign(data, baseData)
         const alwaysIgnore = ["slot", "booga"]
 
@@ -258,6 +275,7 @@ class ComponentState {
 
         if (exists(data)) {
             const dataFn = buildFunction({ name: "data", body: data }, eval)
+            // console.log(dataFn())
             this.component.data = dataFn
         }
         if (exists(props)) {
@@ -322,4 +340,16 @@ function parseImplicit(arg) {
     return arg
     // const r = /^\(?(\w+)(?:, *(\w+)\)?) +in +(.+)/
     // return must(match, arg, r)
+}
+
+
+function makeStateRunner(fn) {
+    const runner = (state) => {
+        const children = state.children
+        if (children) {
+            return fn(state, children.map(runner))
+        }
+        return fn(state)
+    }
+    return runner
 }

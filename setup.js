@@ -1,6 +1,6 @@
 export { setup }
 
-import { registerComponent } from "/home/kdog3682/2024-javascript/vuekit/registerComponent.js"
+import { registerMethod, registerComponent } from "/home/kdog3682/2024-javascript/vuekit/registerComponent.js"
 import { must, flat } from "/home/kdog3682/2023/utils.js"
 import Vue from "../lib/vue.js"
 import * as logger from "/home/kdog3682/2024-javascript/js-toolkit/logger.js"
@@ -20,10 +20,6 @@ function createApp(component, value) {
     }
     const app = new Vue(defaultApp)
     return app
-}
-
-function registerMethod([k, v]) {
-    Vue.prototype[k] = v
 }
 
 function setup(options) {

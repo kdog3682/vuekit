@@ -38,4 +38,3 @@ function vueflow(x, mode = 'template') {
     const base = repartition(x)
     return deepAssign( base, _vueflow(text, opt) )
 }
-

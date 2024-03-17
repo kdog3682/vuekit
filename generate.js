@@ -1,7 +1,6 @@
 import {read, rpw, bash, sysArgs, write} from "/home/kdog3682/2024-javascript/nodekit/deno.js"
 import * as chalk from "/home/kdog3682/2024-javascript/js-toolkit/chalk.js"
 import * as variables from "/home/kdog3682/2023/variables.js"
-import {packageManager} from "/home/kdog3682/2024-javascript/nodekit/packageManager.js"
 import {getDashedText, LineEditor} from "/home/kdog3682/2024-javascript/js-toolkit/LineEditor.js"
 import {vueflow} from "/home/kdog3682/2024-javascript/vuekit/vueflow.js"
 // /* prettier-ignore */ import {componentManager, rpx, datetime, tclip, jclip, readRaw, manager, prependOrReplace, mdate, WriteFile, LogFile, vimFunctionConnector, tempFile, resolvePath, path2024, write2024, packageManager3, smart_path, createCodeString2, buildBindings2, JavascriptBuilder, ltf, appendVariable3, generateFile, generateImports, getStats, ff, createCodeString, finishConfig, findError2, onConfigStart, packageManager2, getFiles2, colonPackageManager, packageManagerSingletonRunColon, getText, packageManagerSingleton, oneArg, toVimVariable, headAndTail, absdir, getSection, sortByDate, dateTheFile, vimConnector, writeExportFile, pathJoin, jslib, pylib, backupFile, writeAndBackup, superFileGetter, submit, clipOrLog, fileGetter, toTimestamp, appendVariableFile, readParse, incrementalName, rfile, getJuneJson, isRecentFile, unmute, clip2, clip2 as c2, appendVariable2, moduleFunctionFactory, dirGetter, save, getRecentFile, fileOrText, logger, writeFromOptions, appendFileName, backup, getFiles, mergeJson, fileFromKey, path, mergeFiles, writeUnitTest, runUnitTest, NodeError, isDir, NodeAssertion, sysArgs, sysArg, mute, abspath, getFile, logAction, head, getDir, dirFromPath, npath, textAndLang, shunt, sysget, append, prepend, currentFile, clip, isFile, normFileDir, normRead, normWrite, normAppend, normPrepend, normRpw, openFile, read, rpw, textGetter, write, getString, appendSelf, appendVariable, argv, exit, request} from "/home/kdog3682/2023/node-utils.js"
@@ -39,20 +38,25 @@ function getClasses(s) {
     const r = /class *= *"(.*?)"/g
     return unique(flat(findall(r, s).map((x) => x.split(' '))))
 }
-function create({file, lnum}, mode) {
+function generate(vimState) {
+    const {file, lnum} = vimState
     const text = getDashedText(read(file), lnum)
     const c = vueflow(text, 'component')
     c.raw = newlineIndent(text)
+    let mode
     if (mode == 'debug') {
+        console.log('the mode is debug')
         console.log({classes: getClasses(c.template)})
-        console.log('debugging')
         return console.log(c.template)
     }
+    // return c
 
     const s = 'export default ' + toStringArgumentPretty(c, stringifyOptions)
+    return console.log(s)
     if (!c.name) {
         return console.log(s)
     }
+    return 
 
     const pascal = pascalCase(c.name.replace(/^r-/, ''))
     c.name = conditionalPrefix('r-', c.name)
@@ -75,7 +79,6 @@ function createCssFile(s) {
     const row = a + middle + b
     mid = '-'.repeat(76 * 0.5 - a.length - b.length)
     const bottomDelimiter = a + mid + b + ' } ' + a + mid + b
-    // '-'.repeat(76)
 
     const mapper = (s) => {
         return s
@@ -84,4 +87,4 @@ function createCssFile(s) {
     classes.map(mapper)
 }
 
-packageManager(create)
+export default generate

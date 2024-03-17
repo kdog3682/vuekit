@@ -16,21 +16,20 @@ custom components:
     // custom meaning
     
 ------------------------------------------------------------
-        p hi
-        container asdf = 1
-            asdfasdf = 223
-            type = columns
-            gap = 5
-            left = 100
-            size = 2
 
-            p hiaaaaaaaaaaaa
-            p hi
-            p hi
-                color: red
-            p hi
-                color: blue
-pure html
+container asdf = 1
+    asdfasdf = 223
+    type = columns
+    gap = 5
+    left = 100
+    size = 2
+
+    p hiaaaaaaaaaaaa
+    p hi
+    p hi
+        color: red
+    p hi
+        color: blue
 ------------------------------------------------------------
 
 status: shunt css
@@ -52,6 +51,17 @@ form .container
     button submit
 
 ------------------------------------------------------------
+// chosen
+
+h4 BKL Computer Science
+
+Login
+
+    
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+
 
 name: r-header
 
@@ -129,6 +139,11 @@ table
         
 ------------------------------------------------------------
 
+// the first table shows a slide-in animation
+// the second table is aligned in the middle
+// the css comes from
+
+
 table
     caption .abc .slide-in howdy
     caption howdy 2
@@ -155,3 +170,4 @@ table
             td 1
             td 1
             
+------------------------------------------------------------

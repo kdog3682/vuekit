@@ -24,7 +24,7 @@ const text = `
 hi there
 
 `
-// console.loggg(vuemd(text))
+console.loggg(vuemd(text))
 
 
 

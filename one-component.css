@@ -1,0 +1,51 @@
+
+
+body {
+    background-color: #fef9c3 /* yellow-100 */;
+    padding: 50pt;
+}
+
+body > *:first-child {
+    outline: 1px solid red;
+}
+
+.flex {
+    gap: 20pt;
+}
+
+.tab {
+    
+}
+
+
+form .form {
+    font-size: 12pt;
+    padding: 10pt;
+    width: fit-content;
+    border-radius: 10pt;
+}
+
+form .vertical {
+    font-size: 12pt;
+    padding: 10pt;
+    width: fit-content;
+    border-radius: 10pt;
+}
+
+form .horizontal {
+}
+/* there are numerous ways to achieve the same effects */
+
+}
+
+form[layout="horizontal"] {
+    
+}
+
+form[layout="vertical"] {
+    background-color: #fef9c3 /* yellow-100 */;
+    display: grid;
+    row-gap: 3pt;
+    column-gap: 10pt;
+    grid-template-columns: fit-content(500px) 200px;
+}
