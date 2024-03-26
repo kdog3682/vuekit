@@ -28,12 +28,14 @@ linebreak(20)
 v-info value = 'data'
 ------------------------------------------------------------
 
+debug: template
 name: $register
 
 p BKCS is still in development and cant handle too much traffic at the moment.
     css: blue
-p we are sorry for the incovenience
+p we will do our best to let you know when more space is available.
     css: red
+
 
 button .request-notification notify me when space opens up
     click() {
@@ -41,15 +43,16 @@ button .request-notification notify me when space opens up
     }
 
 if state.pleaseNotify
-    flex .sign-up
+    flex .sign-up tag = form
         input model = email
         button go
-            click() {
+            async click() {
                 if (!this.email.length) {
                     this.state.emailError = true
                 } else {
-                    this.state.activateModal = true
                     this.state.emailError = false 
+                    this.state.activateModal = true
+                    await this.$toggle('activateModal', {duration: 3000})
                 }
             }
 
@@ -103,5 +106,3 @@ async function mounted() {
     // await this.$animate(this.$refs.tabs[0], 'flash')
     // this.$log('tabs')
 }
-------------------------------------------------------------
-

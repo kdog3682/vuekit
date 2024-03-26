@@ -27,13 +27,14 @@ function repartition(x) {
     return state
 }
 function vueflow(x, mode = 'template') {
+    const opt = { mode: "component" }
+
     if (isString(x)) {
-        return _vueflow(smartDedent4(x), {mode})
+        return _vueflow(smartDedent4(x), opt)
     }
     if (touched(x)) {
         return x
     }
-    const opt = { mode: "component" }
     const text = smartDedent(must(x, "raw"))
     const base = repartition(x)
     return deepAssign( base, _vueflow(text, opt) )

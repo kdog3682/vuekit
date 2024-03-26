@@ -11,7 +11,7 @@ function setup(input) {
     Object.entries(methods).forEach(registerMethod)
 
     let [text, frontMatter] = parseFrontmatter(input)
-    if (frontMatter.dollarInfusion) {
+    if (frontMatter.dollarInfusion || /^name: *\$/m.test(input)) {
         const items = dashSplit(text)
         const reducer = (s) => {
             const m = match(s, /^name: +\$(\S+)/m)
@@ -20,18 +20,22 @@ function setup(input) {
             }
         }
         const dollars = reduce(items, reducer)
-        text = templater2(getLast(items), dollars)
-        // console.log(text)
+        const c = getLast(items)
+        // console.log("c", c)
+        // console.log("dollars", dollars)
+        text = templater2(c, dollars)
+        console.log(text)
     } else {
         text = chosen(text, "last")
     }
 
-     const value = vueflow(text, "component")
+     const component = vueflow(text, "component")
     try {
-        createApp(value, value)
+        // console.log(component)
+        createApp(component)
     } catch (e) {
         console.log("ERROR", e)
-        console.log(value.template)
+        console.log(component.template)
         console.log(text)
     }
 }

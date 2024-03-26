@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorem Ipsum HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: var(--green);
+            font-size: var(--font-size);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lorem Ipsum</h1>
+        <div class="section">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim ligula vel est eleifend, quis aliquet leo sodales. Integer luctus mauris non tellus accumsan, vitae tincidunt metus gravida.
+            </p>
+            <p>
+                Vestibulum ut nulla auctor, maximus libero vitae, aliquet felis. Sed non suscipit libero. Sed commodo mauris ac tellus dictum, ac pharetra ipsum rhoncus.
+            </p>
+        </div>
+        <div class="section">
+            <p>
+                Donec aliquet purus non vehicula interdum. In hac habitasse platea dictumst. Nullam commodo eget quam non tincidunt. Nulla convallis, ipsum at luctus rutrum, tortor orci dapibus odio, eu fermentum dolor leo sed dolor.
+            </p>
+            <p>
+                Quisque sit amet augue sed quam convallis imperdiet. Duis tempor elit vel magna lacinia, vel posuere dui lobortis. Vivamus in bibendum libero, eu sollicitudin nunc. Nullam nec justo quis justo mattis suscipit.
+            </p>
+        </div>
+    </div>
+    <script>
+        // Example usage
+var propertiesToAdd = {
+    'green': 'green',
+    'font-size': '16px'
+};
+        setRootAttributes(propertiesToAdd)
+
+function setRootAttributes(o) {
+
+    function set(k, v) {
+        console.log(k, v)
+        document.documentElement.style.setProperty(k, v)
+    }
+    const prefix = ''
+        for (const [k, v] of Object.entries(o)) {
+            set(prefix + k, v)
+        }
+}
+
+
+    </script>
+</body>
+</html>
+

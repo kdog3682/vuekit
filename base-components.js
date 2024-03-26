@@ -1,4 +1,4 @@
-import { datetime } from "/home/kdog3682/2024-javascript/datetime/main.js"
+import * as datetime from "/home/kdog3682/2024-javascript/datetime/main.js"
 import * as helpers from "/home/kdog3682/2024-javascript/vuekit/helpers.js"
 import {
     vueRenderer,
@@ -232,7 +232,7 @@ const VInput = {
     placeholder: { type: String, default: '', },
     label: { type: String, default: '', },
     theme: { type: String},
-    type: { type: String, required: true, },
+    type: { type: String, default: 'text', },
   },
   data() {
     return {
@@ -253,10 +253,18 @@ const VInput = {
 const VInfo = {
     name: 'v-info',
     render(h) {
-        const key = this.value
-        const prefix = '$'
-        const value = this.$parent[prefix + key]
         return h(VPre, {class: "v-info", props: {value}})
     },
     props: ['value'],
 }
+
+const VColon = {
+    name: 'v-colon',
+    render(h) {
+         
+        this.$slots.default
+        return h('div', {class: "v-colon"}, value)
+    },
+    props: ['value'],
+}
+

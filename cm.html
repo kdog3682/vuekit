@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CodeMirror 6 Example</title>
+  <script type="module">
+    import { EditorView, basicSetup } from "https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js";
+    import { javascript } from "https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/javascript/javascript.min.js";
+    import { showHint } from "https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/show-hint.min.js";
+    import { javascriptLanguage } from "https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/javascript-hint.min.js";
+
+    const editor = new EditorView({
+      state: EditorView.create({
+        extensions: [
+          basicSetup,
+          javascript(),
+          showHint(javascriptLanguage),
+          EditorView.lineWrapping,
+          EditorView.updateListener.of((update) => {
+            if (update.docChanged) {
+              console.log("Document changed");
+            }
+          }),
+        ],
+      }),
+      parent: document.getElementById("code"),
+    });
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css" />
+</head>
+<body>
+  <div id="code"></div>
+</body>
+</html>

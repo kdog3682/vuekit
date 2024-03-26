@@ -1,12 +1,11 @@
 
 
 body {
-    background-color: #fef9c3 /* yellow-100 */;
     padding: 50pt;
 }
 
 body > *:first-child {
-    outline: 1px solid red;
+    /* outline: 1px solid red; */
 }
 
 .flex {

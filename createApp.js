@@ -1,9 +1,17 @@
+import {registerComponent} from "/home/kdog3682/2024-javascript/vuekit/registerComponent.js"
 export {
     createApp,
 }
 
 import Vue from "../lib/vue.js"
-function createApp(component, value) {
+function createApp(x, value) {
+    let component
+    if (Array.isArray(x)) {
+        x.forEach(registerComponent)
+        component = x[x.length - 1]
+    } else {
+        component = x
+    }
     const defaultApp = {
         name: "App",
         el: "#app",
