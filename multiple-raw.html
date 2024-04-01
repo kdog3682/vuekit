@@ -3,7 +3,10 @@
     <link rel="stylesheet" href="./multiple-raw.css"/>
 
     <script type="module">
-        import input from "./multiple-raw.vue.js?raw"
+        // import input from "./multiple-raw.vue.js?raw"
+        import {Fzf} from "/home/kdog3682/2024-javascript/lib/fzf.js"
+        window.Fzf=Fzf
+        import input from "/home/kdog3682/2024-javascript/vuekit/staging/fzf.vue.js?raw"
         import setup from "./multiple-raw.js"
         setup(input)
     </script>

@@ -135,7 +135,7 @@ class ComponentState {
                 this.handleInlineFunction(parent, funcData)
             }
         } catch(e) {
-            console.log(e)
+            console.log(e.toString())
             console.speak('unable to handle the function text')
             console.speak('the text is ...', text)
             exit()
@@ -335,7 +335,14 @@ const attributionalFunctionRef = {
         functionLocation: "methods",
         propertyType: "events",
         propertyKey(node) {
-            return node.state.component ? "click.native" : "click"
+            const parent = node.parent.state.component
+            if (parent == 'container' || parent == 'null') {
+                return 'click'
+                
+            }
+            console.log(parent, 'hiii')
+            return 'click.native'
+            // return node.parent.state.component ? "click.native" : "click"
         }
     },
     mouseleave: {
@@ -353,6 +360,26 @@ const attributionalFunctionRef = {
         propertyType: "events",
         propertyKey: "mouseover"
     },
+    keydown2: {
+        functionLocation: "methods",
+        propertyType: "events",
+        propertyKey: "keydown"
+    },
+
+    keydown: {
+        functionLocation: "methods",
+        propertyType: "events",
+        propertyKey(node) {
+            const parent = node.parent.state.component
+            const key = 'keydown'
+            if (parent == 'container' || parent == 'null') {
+                return key
+                
+            }
+            return key + '.native'
+        }
+    },
+
     enter: {
         functionLocation: "methods",
         propertyType: "events",
